@@ -1,0 +1,56 @@
+#!/bin/bash
+# Sets up xwinwrap on two 1080p monitors 
+# (where the primary is the left monitor).
+# The left monitor uses a weird aspect ratio because of weird Gnome issues
+# Requirements: xwinwrap, xdotool
+
+VIDEO_SWITCH_TIME=5
+
+left_monitor() {
+	echo $1
+	# Move the mouse to screen zero and click (my left screen, main monitor)
+	xdotool mousemove --screen 0 0 1080
+	xdotool click 1
+
+	# Launch xwinwrap with the weird aspect ratio
+	# xwinwrap -g 1920x1080 -b -s -ni -nf -un -- mplayer -slave -really-quiet -fixed-vo -wid WID -nosound -monitoraspect 15.65/9 -fs -loop 0 $1
+	xwinwrap -g 1920x1080 -b -s -ni -nf -un -- mplayer -slave -really-quiet -fixed-vo -wid WID -nosound -monitoraspect 16/9 -fs -loop 0 $1
+	#~/Videos/Live\ wallpapers/thanos.mp4
+}
+
+right_monitor() {
+	#sleep to give xdotool time to work
+	sleep .2
+
+	# Move the mouse to screen zero and click (my left screen, main monitor)
+	xdotool mousemove --screen 0 1921 1080
+	xdotool click 1
+
+	# Launch xwinwrap with 16/9 aspect ratio
+	xwinwrap -g 1920x1080 -b -s -ni -nf -un -- mplayer -slave -really-quiet -fixed-vo -wid WID -nosound -monitoraspect 16/9 -fs -loop 0 $1
+	#~/Videos/Live\ wallpapers/thanos.mp4
+}
+
+restart() {
+	#sleep $VIDEO_SWITCH_TIME
+	sleep 90m
+	echo "killing time"
+	killall mplayer
+}
+
+launch() {
+	killall mplayer
+	FOLDER="~/Videos/LiveWallpapers/"
+
+	#cd $FOLDER
+
+	for video in ~/Videos/LiveWallpapers/*
+	do
+		echo "Video: " $video
+		left_monitor $video & right_monitor $video & restart
+	done
+	launch #loop foreverrrr
+}
+
+launch
+

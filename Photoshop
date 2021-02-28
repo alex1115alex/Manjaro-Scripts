@@ -1,0 +1,4 @@
+#!/bin/sh
+#opens photoshop
+wine ~/.wine/drive_c/'Program Files'/PhotoshopPortable/PhotoshopCS6Portable.exe
+&> /dev/null &

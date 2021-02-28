@@ -1,0 +1,4 @@
+#!/bin/sh
+# This shell script kills Pacman and deletes the lock file
+sudo killall pamac-manager
+sudo rm /var/lib/pacman/db.lck

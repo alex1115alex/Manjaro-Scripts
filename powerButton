@@ -1,0 +1,3 @@
+#!/bin/sh
+vlc -f --no-embedded-video --no-video-title --play-and-exit ~/Videos/shutdown.mp4
+shutdown -P now
