@@ -1,5 +1,5 @@
 #!/bin/sh
-#changes brightness
+#changes brightness using iris-flower
 #if["$1" != ""]; then
 	iris-flower $1 100 100 100
 #fi
