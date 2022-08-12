@@ -1,4 +1,4 @@
 #!/bin/sh
-#opens photoshop
+#opens photoshop using wine
 wine ~/.wine/drive_c/'Program Files'/PhotoshopPortable/PhotoshopCS6Portable.exe
 &> /dev/null &
