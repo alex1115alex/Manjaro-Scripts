@@ -1,5 +1,5 @@
 #!/bin/sh
-#Infinite tree
+#Infinite tree. Very nice
 cd /
 while true
 do
